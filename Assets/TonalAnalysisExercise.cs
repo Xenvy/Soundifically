@@ -36,6 +36,12 @@ public class TonalAnalysisExercise : MonoBehaviour
     public Image[] keys;
     private int[] chord_keys;
     private int score;
+    private int attempt = 0;
+    private int include_key_c = 0;
+    private int advanced_chords_c = 0;
+    private int note_c = 0;
+    private int interval_c = 0;
+    private int chord_c = 0;
     GameObject title;
     GameObject title2;
     GameObject title3;
@@ -654,12 +660,14 @@ public class TonalAnalysisExercise : MonoBehaviour
     {
         audio_source6.Play();
     }
+
     private void CheckNote()
     {
         if (random_note == note_ans.value)
         {
             correct_text.SetActive(true);
             score += 100;
+            note_c++;
         }
         else
         {
@@ -669,6 +677,7 @@ public class TonalAnalysisExercise : MonoBehaviour
         check_button.SetActive(false);
         correct_answer.text = note_ans.options[random_note].text;
         next_button.SetActive(true);
+        attempt++;
     }
 
     private void CheckInterval()
@@ -677,6 +686,7 @@ public class TonalAnalysisExercise : MonoBehaviour
         {
             correct_text.SetActive(true);
             score += 100;
+            interval_c++;
         }
         else
         {
@@ -687,6 +697,7 @@ public class TonalAnalysisExercise : MonoBehaviour
         check_button.SetActive(false);
         correct_answer.text = interval_ans.options[random_interval - 1].text;
         next_button.SetActive(true);
+        attempt++;
     }
 
     private void CheckChord()
@@ -701,6 +712,8 @@ public class TonalAnalysisExercise : MonoBehaviour
                     {
                         correct_text.SetActive(true);
                         score += 150;
+                        include_key_c++;
+                        advanced_chords_c++;
                     }
                     else
                     {
@@ -719,6 +732,7 @@ public class TonalAnalysisExercise : MonoBehaviour
                 {
                     correct_text.SetActive(true);
                     score += 120;
+                    advanced_chords_c++;
                 }
                 else
                 {
@@ -737,6 +751,8 @@ public class TonalAnalysisExercise : MonoBehaviour
                     {
                         correct_text.SetActive(true);
                         score += 130;
+                        include_key_c++;
+                        chord_c++;
                     }
                     else
                     {
@@ -755,6 +771,7 @@ public class TonalAnalysisExercise : MonoBehaviour
                 {
                     correct_text.SetActive(true);
                     score += 100;
+                    chord_c++;
                 }
                 else
                 {
@@ -773,6 +790,7 @@ public class TonalAnalysisExercise : MonoBehaviour
         }
         check_button.SetActive(false);      
         next_button.SetActive(true);
+        attempt++;
     }
 
     public void CheckCorrect()
@@ -796,17 +814,31 @@ public class TonalAnalysisExercise : MonoBehaviour
 
     public void Next()
     {
-        for(int i = 0; i < 48; i++)
+        if(attempt<12)
         {
-            keys[i].enabled = false;
-            chord_keys[i] = 0;
+            for (int i = 0; i < 48; i++)
+            {
+                keys[i].enabled = false;
+                chord_keys[i] = 0;
+            }
+            ModeSelect();
+            correct_text.SetActive(false);
+            incorrect_text.SetActive(false);
+            check_button.SetActive(true);
+            next_button.SetActive(false);
+            correct_answer.text = "";
         }
-        ModeSelect();
-        correct_text.SetActive(false);
-        incorrect_text.SetActive(false);
-        check_button.SetActive(true);
-        next_button.SetActive(false);
-        correct_answer.text = "";
+        else
+        {
+            ScoreManager.Instance.score = score;
+            ScoreManager.Instance.exercise_id = 5;
+            ScoreManager.Instance.note_mode = note_c;
+            ScoreManager.Instance.interval_mode = interval_c;
+            ScoreManager.Instance.chord_mode = chord_c;
+            ScoreManager.Instance.advanced_mode = advanced_chords_c;
+            ScoreManager.Instance.key_mode = include_key_c;
+            SceneManager.LoadScene("Score Summary");
+        }
     }
 
     public void Scene_Selection()

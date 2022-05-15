@@ -7,32 +7,32 @@ public class ExerciseSelection : MonoBehaviour
 {
     public void Compression_Exercise()
     {
-        SceneManager.LoadScene("Compression Exercise");
+        SceneManager.LoadScene("Compression Exercise Info");
     }
 
     public void Cutoff_Exercise()
     {
-        SceneManager.LoadScene("CutoffFreq Exercise");
+        SceneManager.LoadScene("CutoffFreq Exercise Info");
     }
 
     public void EQ_Exercise()
     {
-        SceneManager.LoadScene("EQ Exercise");
+        SceneManager.LoadScene("EQ Exercise Info");
     }
 
     public void LevelDiff_Exercise()
     {
-        SceneManager.LoadScene("LevelDiff Exercise");
+        SceneManager.LoadScene("LevelDiff Exercise Info");
     }
 
     public void Rhytm_Exercise()
     {
-        SceneManager.LoadScene("Rhytm Exercise");
+        SceneManager.LoadScene("Rhytm Exercise Info");
     }
 
     public void Tonal_Exercise()
     {
-        SceneManager.LoadScene("TonalAnalysis Exercise");
+        SceneManager.LoadScene("TonalAnalysis Exercise Info");
     }
 
     public void Main_Menu()

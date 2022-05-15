@@ -23,6 +23,12 @@ public class CutoffFreqExercise : MonoBehaviour
     public TextMeshProUGUI ScoreValue;
     private int score;
     private double slider_value;
+    private int attempt;
+    private int perfect_c = 0;
+    private int excellent_c = 0;
+    private int good_c = 0;
+    private int close_c = 0;
+    private int incorrect_c = 0;
     GameObject text;
     GameObject text2;
     GameObject text3;
@@ -216,25 +222,30 @@ public class CutoffFreqExercise : MonoBehaviour
             {
                 text3.SetActive(true);
                 score += 500;
+                perfect_c++;
             }
             else if (correct_frequency / slider_value > 0.8 && correct_frequency / slider_value < 1.4)
             {
                 text4.SetActive(true);
                 score += 200;
+                excellent_c++;
             }
             else if (correct_frequency / slider_value > 0.67 && correct_frequency / slider_value < 1.66)
             {
                 text5.SetActive(true);
                 score += 100;
+                good_c++;
             }
             else if (correct_frequency / slider_value > 0.5 && correct_frequency / slider_value < 2.0)
             {
                 text6.SetActive(true);
                 score += 50;
+                close_c++;
             }
             else
             {
                 text7.SetActive(true);
+                incorrect_c++;
             }
         }
         else
@@ -244,26 +255,30 @@ public class CutoffFreqExercise : MonoBehaviour
             {
                 text3.SetActive(true);
                 score += 500;
+                perfect_c++;
             }
             else if (correct_frequency / slider_value > 0.8 && correct_frequency / slider_value < 1.4)
             {
                 text4.SetActive(true);
                 score += 200;
+                excellent_c++;
             }
             else if (correct_frequency / slider_value > 0.67 && correct_frequency / slider_value < 1.66)
             {
                 text5.SetActive(true);
                 score += 100;
+                good_c++;
             }
             else if (correct_frequency / slider_value > 0.5 && correct_frequency / slider_value < 2.0)
             {
                 text6.SetActive(true);
                 score += 50;
+                close_c++;
             }
             else
             {
                 text7.SetActive(true);
-                score = 0;
+                incorrect_c++;
             }
         }
 
@@ -275,32 +290,47 @@ public class CutoffFreqExercise : MonoBehaviour
         text9.SetActive(false);
         text8.SetActive(true);
         text10.SetActive(true);
+        attempt++;
     }
     public void Next()
     {
-        text.SetActive(false);
-        text2.SetActive(false);
-        ChooseRandomSample();
-        if (is_lowpass)
+        if(attempt<10)
         {
-            text.SetActive(true);
-            slider_low.SetActive(true);
-            slider_high.SetActive(false);
+            text.SetActive(false);
+            text2.SetActive(false);
+            ChooseRandomSample();
+            if (is_lowpass)
+            {
+                text.SetActive(true);
+                slider_low.SetActive(true);
+                slider_high.SetActive(false);
+            }
+            else
+            {
+                text2.SetActive(true);
+                slider_low.SetActive(false);
+                slider_high.SetActive(true);
+            }
+            text3.SetActive(false);
+            text4.SetActive(false);
+            text5.SetActive(false);
+            text6.SetActive(false);
+            text7.SetActive(false);
+            text8.SetActive(false);
+            text10.SetActive(false);
+            text9.SetActive(true);
         }
         else
         {
-            text2.SetActive(true);
-            slider_low.SetActive(false);
-            slider_high.SetActive(true);
+            ScoreManager.Instance.score = score;
+            ScoreManager.Instance.exercise_id = 1;
+            ScoreManager.Instance.incorrect_count = incorrect_c;
+            ScoreManager.Instance.perfect_count = perfect_c;
+            ScoreManager.Instance.excellent_count = excellent_c;
+            ScoreManager.Instance.good_count = good_c;
+            ScoreManager.Instance.close_count = close_c;
+            SceneManager.LoadScene("Score Summary");
         }
-        text3.SetActive(false);
-        text4.SetActive(false);
-        text5.SetActive(false);
-        text6.SetActive(false);
-        text7.SetActive(false);
-        text8.SetActive(false);
-        text10.SetActive(false);
-        text9.SetActive(true);
     }
 
     public void Scene_Selection()

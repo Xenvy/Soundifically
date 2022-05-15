@@ -21,6 +21,12 @@ public class LevelDiffExercise : MonoBehaviour
     public TextMeshProUGUI score_value;
     private int score;
     private double slider_value;
+    private int attempt = 0;
+    private int perfect_c = 0;
+    private int excellent_c = 0;
+    private int good_c = 0;
+    private int close_c = 0;
+    private int incorrect_c = 0;
     GameObject text;
     GameObject text2;
     GameObject text3;
@@ -122,43 +128,63 @@ public class LevelDiffExercise : MonoBehaviour
         {
             score += 500;
             text2.SetActive(true);
+            perfect_c++;
         }
         else if(slider_value - level_diff < 0.5 && slider_value - level_diff > -0.5)
         {
             score += 200;
             text3.SetActive(true);
+            excellent_c++;
         }
         else if (slider_value - level_diff < 0.8 && slider_value - level_diff > -0.8)
         {
             score += 100;
             text4.SetActive(true);
+            good_c++;
         }
         else if (slider_value - level_diff < 1.1 && slider_value - level_diff > -1.1)
         {
             score += 50;
             text5.SetActive(true);
+            close_c++;
         }
         else
         {
             text6.SetActive(true);
+            incorrect_c++;
         }
         text8.SetActive(false);
         text7.SetActive(true);
         text9.SetActive(true);
         score_value.text = score + "";
+        attempt++;
     }
 
     public void Next()
     {
-        text9.SetActive(false);
-        text2.SetActive(false);
-        text3.SetActive(false);
-        text4.SetActive(false);
-        text5.SetActive(false);
-        text6.SetActive(false);
-        ChooseRandomSample();
-        text7.SetActive(false);
-        text8.SetActive(true);
+        if(attempt<12)
+        {
+            text9.SetActive(false);
+            text2.SetActive(false);
+            text3.SetActive(false);
+            text4.SetActive(false);
+            text5.SetActive(false);
+            text6.SetActive(false);
+            ChooseRandomSample();
+            text7.SetActive(false);
+            text8.SetActive(true);
+        }     
+        else
+        {
+            ScoreManager.Instance.score = score;
+            ScoreManager.Instance.exercise_id = 3;
+            ScoreManager.Instance.incorrect_count = incorrect_c;
+            ScoreManager.Instance.perfect_count = perfect_c;
+            ScoreManager.Instance.excellent_count = excellent_c;
+            ScoreManager.Instance.good_count = good_c;
+            ScoreManager.Instance.close_count = close_c;
+            SceneManager.LoadScene("Score Summary");
+        }
     }
 
     public void Scene_Selection()

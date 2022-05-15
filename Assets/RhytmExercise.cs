@@ -33,6 +33,8 @@ public class RhytmExercise : MonoBehaviour
     private float correct_count = 0;
     private float missed_count = 0;
     private float wrong_count = 0;
+    private int attempt = 0;
+    private float diff_bonus = 0;
     GameObject check_button;
     GameObject next_button;
     GameObject time_cursor;
@@ -124,7 +126,7 @@ public class RhytmExercise : MonoBehaviour
 
             if(i > bpm.value*bpm.value/2500)
             {
-                time_cursor.transform.position += Vector3.right * 6.06f;
+                time_cursor.transform.position += Vector3.right * 6.9f;
             }
             else if(i > bpm.value * bpm.value / 3600)
             {
@@ -132,7 +134,7 @@ public class RhytmExercise : MonoBehaviour
             }
             else if(play_started)
             {
-                time_cursor.transform.position += Vector3.right * 6.06f;
+                time_cursor.transform.position += Vector3.right * 6.9f;
             }
 
             yield return new WaitForSeconds(1.5f/bpm.value);
@@ -233,29 +235,45 @@ public class RhytmExercise : MonoBehaviour
         score_value.text = score.ToString("N0");
         check_button.SetActive(false);
         next_button.SetActive(true);
+        attempt++;
+        diff_bonus += difficulty.value;
     }
 
     public void Next()
     {
-        for(int i=0; i<64; i++)
+        if(attempt<8)
         {
-            beat_correct[i].enabled = false;
-            beat_missed[i].enabled = false;
-            beat_wrong[i].enabled = false;
+            for (int i = 0; i < 64; i++)
+            {
+                beat_correct[i].enabled = false;
+                beat_missed[i].enabled = false;
+                beat_wrong[i].enabled = false;
+            }
+            for (int i = 0; i < 16; i++)
+            {
+                kick[i].isOn = false;
+                snare[i].isOn = false;
+                ohat[i].isOn = false;
+                chat[i].isOn = false;
+            }
+            correct_count = 0;
+            missed_count = 0;
+            wrong_count = 0;
+            check_button.SetActive(true);
+            next_button.SetActive(false);
+            RandomPattern();
         }
-        for(int i=0; i<16; i++)
+        else
         {
-            kick[i].isOn = false;
-            snare[i].isOn = false;
-            ohat[i].isOn = false;
-            chat[i].isOn = false;
+            ScoreManager.Instance.score = (int)score;
+            ScoreManager.Instance.exercise_id = 4;
+            ScoreManager.Instance.incorrect_count = (int)wrong_count;
+            ScoreManager.Instance.excellent_count = (int)correct_count;
+            ScoreManager.Instance.close_count = (int)missed_count;
+            ScoreManager.Instance.difficulty = diff_bonus/0.8f;
+            SceneManager.LoadScene("Score Summary");
         }
-        correct_count = 0;
-        missed_count = 0;
-        wrong_count = 0;
-        check_button.SetActive(true);
-        next_button.SetActive(false);
-        RandomPattern();
+        
     }
 
     public void Scene_Selection()

@@ -15,6 +15,7 @@ public class CompressionExcercise : MonoBehaviour
     private AudioSource audio_source2;
     public TextMeshProUGUI ScoreValue;
     private int score;
+    private int attempt = 0;
     DirectoryInfo cfd_info;
     GameObject text;
     GameObject text2;
@@ -119,6 +120,7 @@ public class CompressionExcercise : MonoBehaviour
         ScoreValue.text = score + "";
         sample_button.SetActive(false);
         sample_button2.SetActive(false);
+        attempt++;
     }
 
     public void ChooseSample2()
@@ -136,16 +138,27 @@ public class CompressionExcercise : MonoBehaviour
         ScoreValue.text = score + "";
         sample_button.SetActive(false);
         sample_button2.SetActive(false);
+        attempt++;
     }
 
     public void Next()
     {
-        text.SetActive(false);
-        text2.SetActive(false);
-        ChooseRandomSample();
-        text3.SetActive(false);
-        sample_button.SetActive(true);
-        sample_button2.SetActive(true);
+        if(attempt<16)
+        {
+            text.SetActive(false);
+            text2.SetActive(false);
+            ChooseRandomSample();
+            text3.SetActive(false);
+            sample_button.SetActive(true);
+            sample_button2.SetActive(true);
+        }
+        else
+        {
+            ScoreManager.Instance.score = score;
+            ScoreManager.Instance.exercise_id = 0;
+            ScoreManager.Instance.incorrect_count = 16 - score / 100;
+            SceneManager.LoadScene("Score Summary");
+        }
     }
 
     public void Scene_Selection()

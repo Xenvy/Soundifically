@@ -32,4 +32,25 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/EQ Exercise.unity
     guid: d845b26d355e8584b8c6026c59a2cef5
+  - enabled: 1
+    path: Assets/Scenes/Compression Exercise info.unity
+    guid: 431008a57c9c734439904ee68e844dd8
+  - enabled: 1
+    path: Assets/Scenes/CutoffFreq Exercise info.unity
+    guid: 4c4e92ad5a5d72b4597f38aa6c209d08
+  - enabled: 1
+    path: Assets/Scenes/EQ Exercise info.unity
+    guid: 512d8c1fb2fa7fd4690c7a45c8303946
+  - enabled: 1
+    path: Assets/Scenes/LevelDiff Exercise info.unity
+    guid: 2de80cc6ec0bc2a4da470fa2c5b8a676
+  - enabled: 1
+    path: Assets/Scenes/Rhytm Exercise info.unity
+    guid: 6acc00ec3c421fd46b0b20c58c0e2e3c
+  - enabled: 1
+    path: Assets/Scenes/TonalAnalysis Exercise info.unity
+    guid: 4c8379d05f334854cbded1a5c7909e86
+  - enabled: 1
+    path: Assets/Scenes/Score Summary.unity
+    guid: 468f47be47362bf4eab929b5cafbecff
   m_configObjects: {}

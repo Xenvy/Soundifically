@@ -12,6 +12,6 @@ public class LevelDiffInfo : MonoBehaviour
 
     public void Back_To_Menu()
     {
-        SceneManager.LoadScene("Main Menu");
+        SceneManager.LoadScene("Exercise Selection");
     }
 }
