@@ -258,12 +258,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'You will be presented with two samples, one of which has been significantly
-    compressed.
-
-    Use the speaker icon to preview samples, and once you''ve decided
-    which one is more compressed, check your answer using the "Sample 1" or "Sample
-    2" button.'
+  m_text: You will be presented with two samples, one of which has a peaking filter
+    applied. Try to find the boosted or attenuated frequency using the dedicated
+    slider.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -424,7 +421,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 409812371}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1894039193}
+        m_TargetAssemblyTypeName: EQInfo, Assembly-CSharp
+        m_MethodName: Back_To_Menu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &409812371
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -630,7 +639,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 924780057}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1894039193}
+        m_TargetAssemblyTypeName: EQInfo, Assembly-CSharp
+        m_MethodName: Exercise_Start
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &924780057
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1255,6 +1276,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1894039192}
+  - component: {fileID: 1894039193}
   m_Layer: 5
   m_Name: EQInfo
   m_TagString: Untagged
@@ -1286,3 +1308,15 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1150, y: 537}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1894039193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1894039191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71e7a4ac6f783d04e8a14332bafd5c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -21,7 +21,7 @@ public class RhytmExercise : MonoBehaviour
     public TextMeshProUGUI score_value;
     public Slider bpm;
     public Slider difficulty;
-    private int score;
+    private float score = 0;
     public Toggle[] kick;
     public Toggle[] snare;
     public Toggle[] ohat;
@@ -30,6 +30,9 @@ public class RhytmExercise : MonoBehaviour
     public Image[] beat_correct;
     public Image[] beat_missed;
     public Image[] beat_wrong;
+    private float correct_count = 0;
+    private float missed_count = 0;
+    private float wrong_count = 0;
     GameObject check_button;
     GameObject next_button;
     GameObject time_cursor;
@@ -59,32 +62,32 @@ public class RhytmExercise : MonoBehaviour
         {
             random_kick[i] = Random.Range(0, 7 - (int)difficulty.value);
             random_snare[i] = Random.Range(0, 10 - (int)difficulty.value);
-            random_ohat[i] = Random.Range(0, 12 - (int)difficulty.value);
-            random_chat[i] = Random.Range(0, 10 - (int)difficulty.value);
+            random_ohat[i] = Random.Range(0, 10 - (int)difficulty.value);
+            random_chat[i] = Random.Range(0, 13 - (int)difficulty.value*2);
         }
 
         for (int i = 4; i < 16; i += 8)
         {
             random_kick[i] = Random.Range(0, 8 - (int)difficulty.value);
-            random_snare[i] = Random.Range(0, 6 - (int)difficulty.value);
-            random_ohat[i] = Random.Range(0, 12 - (int)difficulty.value);
-            random_chat[i] = Random.Range(0, 10 - (int)difficulty.value);
+            random_snare[i] = Random.Range(0, 7 - (int)difficulty.value);
+            random_ohat[i] = Random.Range(0, 10 - (int)difficulty.value);
+            random_chat[i] = Random.Range(0, 13 - (int)difficulty.value*2);
         }
 
         for (int i = 2; i < 16; i += 4)
         {
-            random_kick[i] = Random.Range(0, 10 - (int)difficulty.value);
-            random_snare[i] = Random.Range(0, 16 - (int)difficulty.value*2);
+            random_kick[i] = Random.Range(0, 19 - (int)difficulty.value*3);
+            random_snare[i] = Random.Range(0, 21 - (int)difficulty.value*3);
             random_ohat[i] = Random.Range(0, 7 - (int)difficulty.value);
-            random_chat[i] = Random.Range(0, 10 - (int)difficulty.value);
+            random_chat[i] = Random.Range(0, 8 - (int)difficulty.value);
         }
 
         for (int i = 1; i < 16; i += 2)
         {
-            random_kick[i] = Random.Range(0, 45 - (int)difficulty.value*5);
-            random_snare[i] = Random.Range(0, 60 - (int)difficulty.value*5);
-            random_ohat[i] = Random.Range(0, 16 - (int)difficulty.value*2);
-            random_chat[i] = Random.Range(0, 9 - (int)difficulty.value);
+            random_kick[i] = Random.Range(0, 32 - (int)difficulty.value*4);
+            random_snare[i] = Random.Range(0, 45 - (int)difficulty.value*4);
+            random_ohat[i] = Random.Range(0, 17 - (int)difficulty.value*2);
+            random_chat[i] = Random.Range(0, 11 - (int)difficulty.value);
         }
     }
 
@@ -102,6 +105,7 @@ public class RhytmExercise : MonoBehaviour
             {
                 if (random_kick[i/10] == 0)
                 {
+                    audio_source.Stop();
                     audio_source.Play();
                 }
                 if (random_snare[i/10] == 0)
@@ -120,7 +124,7 @@ public class RhytmExercise : MonoBehaviour
 
             if(i > bpm.value*bpm.value/2500)
             {
-                time_cursor.transform.position += Vector3.right * 6.9f;
+                time_cursor.transform.position += Vector3.right * 6.06f;
             }
             else if(i > bpm.value * bpm.value / 3600)
             {
@@ -128,7 +132,7 @@ public class RhytmExercise : MonoBehaviour
             }
             else if(play_started)
             {
-                time_cursor.transform.position += Vector3.right * 6.9f;
+                time_cursor.transform.position += Vector3.right * 6.06f;
             }
 
             yield return new WaitForSeconds(1.5f/bpm.value);
@@ -160,56 +164,73 @@ public class RhytmExercise : MonoBehaviour
             if(kick[i].isOn == true && random_kick[i] == 0)
             {
                 beat_correct[i].enabled = true;
+                correct_count++;
             }
             else if(kick[i].isOn == true && random_kick[i] != 0)
             {
                 beat_wrong[i].enabled = true;
+                wrong_count++;
             }
             else if(kick[i].isOn == false && random_kick[i] == 0)
             {
                 beat_missed[i].enabled = true;
+                missed_count++;
             }
 
             if (snare[i].isOn == true && random_snare[i] == 0)
             {
                 beat_correct[i+16].enabled = true;
+                correct_count++;
             }
             else if (snare[i].isOn == true && random_snare[i] != 0)
             {
                 beat_wrong[i+16].enabled = true;
+                wrong_count++;
             }
             else if (snare[i].isOn == false && random_snare[i] == 0)
             {
                 beat_missed[i+16].enabled = true;
+                missed_count++;
             }
 
             if (ohat[i].isOn == true && random_ohat[i] == 0)
             {
                 beat_correct[i+32].enabled = true;
+                correct_count++;
             }
             else if (ohat[i].isOn == true && random_ohat[i] != 0)
             {
                 beat_wrong[i+32].enabled = true;
+                wrong_count++;
             }
             else if (ohat[i].isOn == false && random_ohat[i] == 0)
             {
                 beat_missed[i+32].enabled = true;
+                missed_count++;
             }
 
             if (chat[i].isOn == true && random_chat[i] == 0)
             {
                 beat_correct[i+48].enabled = true;
+                correct_count++;
             }
             else if (chat[i].isOn == true && random_chat[i] != 0)
             {
                 beat_wrong[i+48].enabled = true;
+                wrong_count++;
             }
             else if (chat[i].isOn == false && random_chat[i] == 0)
             {
                 beat_missed[i+48].enabled = true;
+                missed_count++;
             }
         }
+        if(correct_count != 0)
+        {
+            score += (1 + difficulty.value * 0.2f) * 200 * (correct_count - wrong_count + 1.0f) / (missed_count + correct_count + 1.0f);
+        }
 
+        score_value.text = score.ToString("N0");
         check_button.SetActive(false);
         next_button.SetActive(true);
     }
@@ -229,6 +250,9 @@ public class RhytmExercise : MonoBehaviour
             ohat[i].isOn = false;
             chat[i].isOn = false;
         }
+        correct_count = 0;
+        missed_count = 0;
+        wrong_count = 0;
         check_button.SetActive(true);
         next_button.SetActive(false);
         RandomPattern();

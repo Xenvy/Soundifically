@@ -212,22 +212,22 @@ public class CutoffFreqExercise : MonoBehaviour
         if(is_lowpass)
         {
             slider_value = 20 * Mathf.Pow(2, frequency_slider_low.value);
-            if (correct_frequency / slider_value > 0.95 && correct_frequency / slider_value < 1.05)
+            if (correct_frequency / slider_value > 0.9 && correct_frequency / slider_value < 1.2)
             {
                 text3.SetActive(true);
                 score += 500;
             }
-            else if (correct_frequency / slider_value > 0.90 && correct_frequency / slider_value < 1.1)
+            else if (correct_frequency / slider_value > 0.8 && correct_frequency / slider_value < 1.4)
             {
                 text4.SetActive(true);
                 score += 200;
             }
-            else if (correct_frequency / slider_value > 0.8 && correct_frequency / slider_value < 1.2)
+            else if (correct_frequency / slider_value > 0.67 && correct_frequency / slider_value < 1.66)
             {
                 text5.SetActive(true);
                 score += 100;
             }
-            else if (correct_frequency / slider_value > 0.67 && correct_frequency / slider_value < 1.33)
+            else if (correct_frequency / slider_value > 0.5 && correct_frequency / slider_value < 2.0)
             {
                 text6.SetActive(true);
                 score += 50;
@@ -235,28 +235,27 @@ public class CutoffFreqExercise : MonoBehaviour
             else
             {
                 text7.SetActive(true);
-                score = 0;
             }
         }
         else
         {
             slider_value = 20 * Mathf.Pow(2, frequency_slider_high.value);
-            if (correct_frequency / slider_value > 0.95 && correct_frequency / slider_value < 1.05)
+            if (correct_frequency / slider_value > 0.9 && correct_frequency / slider_value < 1.2)
             {
                 text3.SetActive(true);
                 score += 500;
             }
-            else if (correct_frequency / slider_value > 0.90 && correct_frequency / slider_value < 1.1)
+            else if (correct_frequency / slider_value > 0.8 && correct_frequency / slider_value < 1.4)
             {
                 text4.SetActive(true);
                 score += 200;
             }
-            else if (correct_frequency / slider_value > 0.8 && correct_frequency / slider_value < 1.2)
+            else if (correct_frequency / slider_value > 0.67 && correct_frequency / slider_value < 1.66)
             {
                 text5.SetActive(true);
                 score += 100;
             }
-            else if (correct_frequency / slider_value > 0.67 && correct_frequency / slider_value < 1.33)
+            else if (correct_frequency / slider_value > 0.5 && correct_frequency / slider_value < 2.0)
             {
                 text6.SetActive(true);
                 score += 50;

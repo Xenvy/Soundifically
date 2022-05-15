@@ -113,7 +113,6 @@ public class CompressionExcercise : MonoBehaviour
         }
         else
         {
-            score = 0;
             text2.SetActive(true);
         }
         text3.SetActive(true);
@@ -131,7 +130,6 @@ public class CompressionExcercise : MonoBehaviour
         }
         else
         {
-            score = 0;
             text2.SetActive(true);
         }
         text3.SetActive(true);
