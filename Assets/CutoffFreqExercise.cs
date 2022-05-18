@@ -112,34 +112,42 @@ public class CutoffFreqExercise : MonoBehaviour
     {
         cfd_info = new DirectoryInfo(cfd);
 
-        foreach (FileInfo fi in cfd_info.GetFiles())
+        if(cfd_info.Exists)
         {
-            if (fi.Extension == ".mp3")
+            foreach (FileInfo fi in cfd_info.GetFiles())
             {
-                using (UnityWebRequest get_custom_file = UnityWebRequestMultimedia.GetAudioClip(fi.FullName, AudioType.MPEG))
+                if (fi.Extension == ".mp3")
                 {
-                    yield return get_custom_file.SendWebRequest();
-
-                    if (get_custom_file.result != UnityWebRequest.Result.ConnectionError)
+                    using (UnityWebRequest get_custom_file = UnityWebRequestMultimedia.GetAudioClip(fi.FullName, AudioType.MPEG))
                     {
-                        samples.Add(DownloadHandlerAudioClip.GetContent(get_custom_file));
+                        yield return get_custom_file.SendWebRequest();
+
+                        if (get_custom_file.result != UnityWebRequest.Result.ConnectionError)
+                        {
+                            samples.Add(DownloadHandlerAudioClip.GetContent(get_custom_file));
+                        }
                     }
                 }
-            }
-            else if (fi.Extension == ".wav")
-            {
-                using (UnityWebRequest get_custom_file = UnityWebRequestMultimedia.GetAudioClip(fi.FullName, AudioType.WAV))
+                else if (fi.Extension == ".wav")
                 {
-                    yield return get_custom_file.SendWebRequest();
-
-                    if (get_custom_file.result != UnityWebRequest.Result.ConnectionError)
+                    using (UnityWebRequest get_custom_file = UnityWebRequestMultimedia.GetAudioClip(fi.FullName, AudioType.WAV))
                     {
-                        samples.Add(DownloadHandlerAudioClip.GetContent(get_custom_file));
+                        yield return get_custom_file.SendWebRequest();
+
+                        if (get_custom_file.result != UnityWebRequest.Result.ConnectionError)
+                        {
+                            samples.Add(DownloadHandlerAudioClip.GetContent(get_custom_file));
+                        }
                     }
                 }
-            }
 
+            }
         }
+        else
+        {
+            Directory.CreateDirectory(cfd);
+        }
+        
     }
 
     private void Update()

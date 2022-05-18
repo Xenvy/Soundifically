@@ -49,33 +49,40 @@ public class CompressionExcercise : MonoBehaviour
     {
         cfd_info = new DirectoryInfo(cfd);
 
-        foreach (FileInfo fi in cfd_info.GetFiles())
+        if(cfd_info.Exists)
         {
-            if (fi.Extension == ".mp3")
+            foreach (FileInfo fi in cfd_info.GetFiles())
             {
-                using (UnityWebRequest custom_file = UnityWebRequestMultimedia.GetAudioClip(fi.FullName, AudioType.MPEG))
+                if (fi.Extension == ".mp3")
                 {
-                    yield return custom_file.SendWebRequest();
-
-                    if (custom_file.result != UnityWebRequest.Result.ConnectionError)
+                    using (UnityWebRequest custom_file = UnityWebRequestMultimedia.GetAudioClip(fi.FullName, AudioType.MPEG))
                     {
-                        samples.Add(DownloadHandlerAudioClip.GetContent(custom_file));
+                        yield return custom_file.SendWebRequest();
+
+                        if (custom_file.result != UnityWebRequest.Result.ConnectionError)
+                        {
+                            samples.Add(DownloadHandlerAudioClip.GetContent(custom_file));
+                        }
                     }
                 }
-            }
-            else if (fi.Extension == ".wav")
-            {
-                using (UnityWebRequest custom_file = UnityWebRequestMultimedia.GetAudioClip(fi.FullName, AudioType.WAV))
+                else if (fi.Extension == ".wav")
                 {
-                    yield return custom_file.SendWebRequest();
-
-                    if (custom_file.result != UnityWebRequest.Result.ConnectionError)
+                    using (UnityWebRequest custom_file = UnityWebRequestMultimedia.GetAudioClip(fi.FullName, AudioType.WAV))
                     {
-                        samples.Add(DownloadHandlerAudioClip.GetContent(custom_file));
+                        yield return custom_file.SendWebRequest();
+
+                        if (custom_file.result != UnityWebRequest.Result.ConnectionError)
+                        {
+                            samples.Add(DownloadHandlerAudioClip.GetContent(custom_file));
+                        }
                     }
                 }
-            }
 
+            }
+        }
+        else
+        {
+            Directory.CreateDirectory(cfd);
         }
     }
 
