@@ -341,9 +341,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: ChooseSample2
+      - m_Target: {fileID: 1894728151}
+        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
+        m_MethodName: Settings_Screen
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -420,6 +420,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3836921e67a178f429e01ef3470fe758, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  score: 0
+  difficulty: 0
+  exercise_id: 0
+  perfect_count: 0
+  excellent_count: 0
+  good_count: 0
+  close_count: 0
+  incorrect_count: 0
+  note_mode: 0
+  interval_mode: 0
+  chord_mode: 0
+  advanced_mode: 0
+  key_mode: 0
 --- !u!4 &1102212638
 Transform:
   m_ObjectHideFlags: 0
@@ -991,19 +1004,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1405419961}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: Next
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1405419961
 MonoBehaviour:
   m_ObjectHideFlags: 0

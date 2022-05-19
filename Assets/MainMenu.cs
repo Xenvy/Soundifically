@@ -10,6 +10,11 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene("Exercise Selection");
     }
 
+    public void Settings_Screen()
+    {
+        SceneManager.LoadScene("Settings Screen");
+    }
+
     public void Quit_App()
     {
         Application.Quit();
