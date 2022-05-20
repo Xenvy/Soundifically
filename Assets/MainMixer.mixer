@@ -219,6 +219,8 @@ AudioMixerController:
     name: EQVolume1
   - guid: 771ec2968ece52e4e9f9f7827884ea5c
     name: VolDiff
+  - guid: b978ac0a9f86e7d4a97a13575af59c60
+    name: MainVolume
   m_AudioMixerGroupViews:
   - guids:
     - 7c14307ba83d6c949a61e60c978ec07e

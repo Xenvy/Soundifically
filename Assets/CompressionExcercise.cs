@@ -25,7 +25,15 @@ public class CompressionExcercise : MonoBehaviour
 
     private void ChooseRandomSample()
     {
-        sample = Random.Range(0, samples.Count);
+        if (PlayerPrefs.GetInt("Custom Sounds Only", 0) == 1)
+        {
+            sample = Random.Range(0, samples.Count - 28) + 28;
+        }
+        else
+        {
+            sample = Random.Range(0, samples.Count);
+        }
+
         sample_correct = Random.Range(0, 2);
     }
     void Awake()

@@ -66,7 +66,15 @@ public class LevelDiffExercise : MonoBehaviour
 
     private void ChooseRandomSample()
     {
-        sample = Random.Range(0, samples.Count);
+        if(PlayerPrefs.GetInt("Custom Sounds Only", 0) == 1)
+        {
+            sample = Random.Range(0, samples.Count-28) + 28;
+        }
+        else
+        {
+            sample = Random.Range(0, samples.Count);
+        }
+        
         level_diff = Random.Range(0.1f, 6.0f);
         main_mixer.SetFloat("VolDiff", -level_diff);
         correct_diff.text = level_diff.ToString("N1") + " dB";

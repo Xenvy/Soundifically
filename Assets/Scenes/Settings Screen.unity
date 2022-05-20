@@ -343,7 +343,19 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1397859573}
+        m_TargetAssemblyTypeName: SettingsScreen, Assembly-CSharp
+        m_MethodName: Enable_Telemetry
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 1
 --- !u!1 &165967728
 GameObject:
@@ -1533,7 +1545,19 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1397859573}
+        m_TargetAssemblyTypeName: SettingsScreen, Assembly-CSharp
+        m_MethodName: Custom_Sounds_Only
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &1193744145
 GameObject:
@@ -1771,6 +1795,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0280da5a6ae42bc469fc7df85dbdee62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  volume_slider: {fileID: 1991692938}
+  telemetry_enabled: {fileID: 136664716}
+  custom_sounds: {fileID: 1070422149}
+  main_mixer: {fileID: 24100000, guid: b46cd36c4c215bb4d83295f83151dd49, type: 2}
 --- !u!1 &1556308375
 GameObject:
   m_ObjectHideFlags: 0
@@ -2045,12 +2073,24 @@ MonoBehaviour:
   m_HandleRect: {fileID: 587401894}
   m_Direction: 0
   m_MinValue: -80
-  m_MaxValue: 0
+  m_MaxValue: -0.3
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: -0.3
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1397859573}
+        m_TargetAssemblyTypeName: SettingsScreen, Assembly-CSharp
+        m_MethodName: Set_Volume
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2124726386
 GameObject:
   m_ObjectHideFlags: 0
