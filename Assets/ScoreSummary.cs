@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+#if ENABLE_CLOUD_SERVICES_ANALYTICS
+using UnityEngine.Analytics;
+#endif
 
 public class ScoreSummary : MonoBehaviour
 {
@@ -18,8 +21,19 @@ public class ScoreSummary : MonoBehaviour
     public TextMeshProUGUI difficulty_text;
     public TextMeshProUGUI total_score;
 
+    private Dictionary<string, object> user_score = new Dictionary<string, object>();
+
     private void Awake()
     {
+        if(!PlayerPrefs.HasKey("Player ID"))
+        {
+            PlayerPrefs.SetInt("Player ID", Random.Range(0, 1000000));
+        }
+
+        user_score.Add("Player ID", PlayerPrefs.GetInt("Player ID"));
+        user_score.Add("Exercise ID", ScoreManager.Instance.exercise_id);
+        user_score.Add("Score", ScoreManager.Instance.score);       
+
         total_score.text = "Total score: " + ScoreManager.Instance.score.ToString();
         switch (ScoreManager.Instance.exercise_id)
         {
@@ -34,6 +48,7 @@ public class ScoreSummary : MonoBehaviour
                 good_value.text = " ";
                 close_value.text = " ";
                 difficulty_bonus.text = " ";
+                user_score.Add("Correct answers", 16 - ScoreManager.Instance.incorrect_count);
                 break;
 
             case 1:
@@ -47,6 +62,10 @@ public class ScoreSummary : MonoBehaviour
                 good_value.text = (ScoreManager.Instance.good_count * 100).ToString();
                 close_value.text = (ScoreManager.Instance.close_count * 50).ToString();
                 difficulty_bonus.text = " ";
+                user_score.Add("Perfect answers", ScoreManager.Instance.perfect_count);
+                user_score.Add("Excellent answers", ScoreManager.Instance.excellent_count);
+                user_score.Add("Good answers", ScoreManager.Instance.good_count);
+                user_score.Add("Close answers", ScoreManager.Instance.close_count);
                 break;
 
             case 2:
@@ -60,6 +79,10 @@ public class ScoreSummary : MonoBehaviour
                 good_value.text = (ScoreManager.Instance.good_count * 100).ToString();
                 close_value.text = (ScoreManager.Instance.close_count * 50).ToString();
                 difficulty_bonus.text = " ";
+                user_score.Add("Perfect answers", ScoreManager.Instance.perfect_count);
+                user_score.Add("Excellent answers", ScoreManager.Instance.excellent_count);
+                user_score.Add("Good answers", ScoreManager.Instance.good_count);
+                user_score.Add("Close answers", ScoreManager.Instance.close_count);
                 break;
 
             case 3:
@@ -73,6 +96,10 @@ public class ScoreSummary : MonoBehaviour
                 good_value.text = (ScoreManager.Instance.good_count * 100).ToString();
                 close_value.text = (ScoreManager.Instance.close_count * 50).ToString();
                 difficulty_bonus.text = " ";
+                user_score.Add("Perfect answers", ScoreManager.Instance.perfect_count);
+                user_score.Add("Excellent answers", ScoreManager.Instance.excellent_count);
+                user_score.Add("Good answers", ScoreManager.Instance.good_count);
+                user_score.Add("Close answers", ScoreManager.Instance.close_count);
                 break;
 
             case 4:
@@ -85,7 +112,11 @@ public class ScoreSummary : MonoBehaviour
                 excellent_value.text = ScoreManager.Instance.incorrect_count.ToString();
                 good_value.text = ScoreManager.Instance.close_count.ToString();
                 close_value.text = " ";
-                difficulty_bonus.text = "+" + ScoreManager.Instance.close_count.ToString() + @"%";
+                difficulty_bonus.text = "+" + ScoreManager.Instance.difficulty.ToString() + @"%";
+                user_score.Add("Correct answers", ScoreManager.Instance.excellent_count);
+                user_score.Add("Wrong answers", ScoreManager.Instance.incorrect_count);
+                user_score.Add("Missed answers", ScoreManager.Instance.close_count);
+                user_score.Add("Difficulty bonus", ScoreManager.Instance.difficulty);
                 break;
 
             case 5:
@@ -99,11 +130,26 @@ public class ScoreSummary : MonoBehaviour
                 good_value.text = (ScoreManager.Instance.chord_mode * 100).ToString();
                 close_value.text = "+" + (ScoreManager.Instance.advanced_mode * 20).ToString();
                 difficulty_bonus.text = "+" + (ScoreManager.Instance.key_mode * 30).ToString();
+                user_score.Add("Notes", ScoreManager.Instance.note_mode);
+                user_score.Add("Intervals", ScoreManager.Instance.interval_mode);
+                user_score.Add("Chords", ScoreManager.Instance.chord_mode);
+                user_score.Add("Advanced chords", ScoreManager.Instance.advanced_mode);
+                user_score.Add("Chords with root", ScoreManager.Instance.key_mode);
                 break;
 
             default:
                 break;
         }
+
+#if ENABLE_CLOUD_SERVICES_ANALYTICS
+        if (PlayerPrefs.GetInt("TelemetryOn", 1) == 1)
+        {
+            
+            AnalyticsResult ar = Analytics.CustomEvent("Exercise Completed", user_score);
+            
+        }
+#endif
+
     }
 
     public void Try_Again()

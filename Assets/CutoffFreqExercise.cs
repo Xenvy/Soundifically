@@ -48,7 +48,7 @@ public class CutoffFreqExercise : MonoBehaviour
 
     private void ChooseRandomSample()
     {
-        if(PlayerPrefs.GetInt("Custom Sounds Only", 0) == 1)
+        if(PlayerPrefs.GetInt("Custom Sounds Only", 0) == 1 && samples.Count > 12)
         {
             sample = Random.Range(0, samples.Count-12) + 12;
         }

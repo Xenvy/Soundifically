@@ -18,6 +18,7 @@ public class ScoreManager : MonoBehaviour
     public int chord_mode;
     public int advanced_mode;
     public int key_mode;
+    public int player_id;
     void Awake()
     {
         if (Instance != null)
