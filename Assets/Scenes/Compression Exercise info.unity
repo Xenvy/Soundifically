@@ -854,8 +854,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1025.7, y: 242}
+  m_AnchoredPosition: {x: 0, y: -10}
+  m_SizeDelta: {x: 1044, y: 316}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1739658393
 MonoBehaviour:
@@ -877,12 +877,16 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'You will be presented with two samples, one of which has been significantly
+  m_text: 'You will be presented with two samples, one of which will have its dynamics
     compressed.
 
-    Use the speaker icon to preview samples, and once you''ve decided
-    which one is more compressed, check your answer using the "Sample 1" or "Sample
-    2" button.'
+    Try to find which one it is using the speaker icon to preview
+    samples, then check your answer with the "Sample 1" or "Sample 2" button.
+
+
+    Hint:
+    Compressed sounds often feel tight and punchy. They usually appear more powerful
+    and impactful than their uncompressed counterparts.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -910,8 +914,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

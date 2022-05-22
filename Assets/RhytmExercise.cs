@@ -51,6 +51,10 @@ public class RhytmExercise : MonoBehaviour
         audio_source2 = FindObjectsOfType<AudioSource>()[2];
         audio_source3 = FindObjectsOfType<AudioSource>()[3];
 
+        ScoreManager.Instance.incorrect_count = 0;
+        ScoreManager.Instance.excellent_count = 0;
+        ScoreManager.Instance.close_count = 0;
+
         RandomPattern();
 
         next_button.SetActive(false);
@@ -161,6 +165,7 @@ public class RhytmExercise : MonoBehaviour
 
     public void CheckCorrect()
     {
+
         for(int i = 0; i < 16;  i++)
         {
             if(kick[i].isOn == true && random_kick[i] == 0)
@@ -232,11 +237,39 @@ public class RhytmExercise : MonoBehaviour
             score += (1 + difficulty.value * 0.2f) * 200 * (correct_count - wrong_count + 1.0f) / (missed_count + correct_count + 1.0f);
         }
 
+        ScoreManager.Instance.incorrect_count += (int)wrong_count;
+        ScoreManager.Instance.excellent_count += (int)correct_count;
+        ScoreManager.Instance.close_count += (int)missed_count;
+
+        correct_count = 0;
+        missed_count = 0;
+        wrong_count = 0;
+
         score_value.text = score.ToString("N0");
         check_button.SetActive(false);
         next_button.SetActive(true);
         attempt++;
         diff_bonus += difficulty.value;
+    }
+
+    public void Play_Kick()
+    {
+        audio_source.Play();
+    }
+
+    public void Play_Snare()
+    {
+        audio_source2.Play();
+    }
+
+    public void Play_OHat()
+    {
+        audio_source3.Play();
+    }
+
+    public void Play_CHat()
+    {
+        audio_source4.Play();
     }
 
     public void Next()
@@ -256,9 +289,6 @@ public class RhytmExercise : MonoBehaviour
                 ohat[i].isOn = false;
                 chat[i].isOn = false;
             }
-            correct_count = 0;
-            missed_count = 0;
-            wrong_count = 0;
             check_button.SetActive(true);
             next_button.SetActive(false);
             RandomPattern();
@@ -267,9 +297,6 @@ public class RhytmExercise : MonoBehaviour
         {
             ScoreManager.Instance.score = (int)score;
             ScoreManager.Instance.exercise_id = 4;
-            ScoreManager.Instance.incorrect_count = (int)wrong_count;
-            ScoreManager.Instance.excellent_count = (int)correct_count;
-            ScoreManager.Instance.close_count = (int)missed_count;
             ScoreManager.Instance.difficulty = diff_bonus/0.8f;
             SceneManager.LoadScene("Score Summary");
         }
