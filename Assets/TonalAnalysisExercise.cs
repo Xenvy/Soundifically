@@ -838,6 +838,11 @@ public class TonalAnalysisExercise : MonoBehaviour
             ScoreManager.Instance.advanced_mode = advanced_chords_c;
             ScoreManager.Instance.key_mode = include_key_c;
             SceneManager.LoadScene("Score Summary");
+
+            if (PlayerPrefs.GetInt("Tonal Highscore", 0) < score)
+            {
+                PlayerPrefs.SetInt("Tonal Highscore", score);
+            }
         }
     }
 

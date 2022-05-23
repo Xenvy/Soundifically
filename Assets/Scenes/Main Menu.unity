@@ -433,6 +433,7 @@ MonoBehaviour:
   chord_mode: 0
   advanced_mode: 0
   key_mode: 0
+  player_id: 0
 --- !u!4 &1102212638
 Transform:
   m_ObjectHideFlags: 0
@@ -1004,7 +1005,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1405419961}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1894728151}
+        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
+        m_MethodName: Highscores_Screen
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1405419961
 MonoBehaviour:
   m_ObjectHideFlags: 0

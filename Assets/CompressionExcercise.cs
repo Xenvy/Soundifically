@@ -173,6 +173,11 @@ public class CompressionExcercise : MonoBehaviour
             ScoreManager.Instance.exercise_id = 0;
             ScoreManager.Instance.incorrect_count = 16 - score / 100;
             SceneManager.LoadScene("Score Summary");
+
+            if (PlayerPrefs.GetInt("Compression Highscore", 0) < score)
+            {
+                PlayerPrefs.SetInt("Compression Highscore", score);
+            }
         }
     }
 

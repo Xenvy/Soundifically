@@ -285,6 +285,11 @@ public class EQExcercise : MonoBehaviour
             ScoreManager.Instance.good_count = good_c;
             ScoreManager.Instance.close_count = close_c;
             SceneManager.LoadScene("Score Summary");
+
+            if (PlayerPrefs.GetInt("EQ Highscore", 0) < score)
+            {
+                PlayerPrefs.SetInt("EQ Highscore", score);
+            }
         }
     }
 

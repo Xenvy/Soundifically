@@ -345,6 +345,11 @@ public class CutoffFreqExercise : MonoBehaviour
             ScoreManager.Instance.good_count = good_c;
             ScoreManager.Instance.close_count = close_c;
             SceneManager.LoadScene("Score Summary");
+
+            if (PlayerPrefs.GetInt("Cutoff Highscore", 0) < score)
+            {
+                PlayerPrefs.SetInt("Cutoff Highscore", score);
+            }
         }
     }
 

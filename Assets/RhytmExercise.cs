@@ -299,6 +299,11 @@ public class RhytmExercise : MonoBehaviour
             ScoreManager.Instance.exercise_id = 4;
             ScoreManager.Instance.difficulty = diff_bonus/0.8f;
             SceneManager.LoadScene("Score Summary");
+
+            if(PlayerPrefs.GetInt("Rhytm Highscore", 0) < score)
+            {
+                PlayerPrefs.SetInt("Rhytm Highscore", (int)score);
+            }
         }
         
     }

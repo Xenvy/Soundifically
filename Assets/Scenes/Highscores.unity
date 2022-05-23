@@ -555,8 +555,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ScoreSummary, Assembly-CSharp
+      - m_Target: {fileID: 738428728}
+        m_TargetAssemblyTypeName: Highscores, Assembly-CSharp
         m_MethodName: Back_To_Menu
         m_Mode: 1
         m_Arguments:
@@ -1022,8 +1022,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 738428727}
+  - component: {fileID: 738428728}
   m_Layer: 5
-  m_Name: ScoreSummary
+  m_Name: Highscores
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1063,6 +1064,24 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1150, y: 537}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &738428728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 738428726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47355b808358d1d4d827ab9c17334cff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  compression_highscore: {fileID: 343940548}
+  cutoff_highscore: {fileID: 75177013}
+  eq_highscore: {fileID: 527570104}
+  level_highscore: {fileID: 1311924160}
+  rhytm_highscore: {fileID: 1253792262}
+  tonal_highscore: {fileID: 775162605}
 --- !u!1 &775162603
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: 
     guid: 00000000000000000000000000000000
   - enabled: 1
+    path: Assets/Scenes/Intro Screen.unity
+    guid: 840d17ff6f647a14dbf1181eb75cba9e
+  - enabled: 1
     path: Assets/Scenes/Main Menu.unity
     guid: 63db93e008c4b474c95109e22238f1d7
   - enabled: 1
@@ -56,4 +59,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Settings Screen.unity
     guid: 34d43d9b9ab36c54a999865bea122044
+  - enabled: 1
+    path: Assets/Scenes/Highscores.unity
+    guid: 6543d4173194b624ab1f23ec97e65298
   m_configObjects: {}

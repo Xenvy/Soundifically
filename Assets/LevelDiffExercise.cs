@@ -200,6 +200,11 @@ public class LevelDiffExercise : MonoBehaviour
             ScoreManager.Instance.good_count = good_c;
             ScoreManager.Instance.close_count = close_c;
             SceneManager.LoadScene("Score Summary");
+
+            if (PlayerPrefs.GetInt("Level Highscore", 0) < score)
+            {
+                PlayerPrefs.SetInt("Level Highscore", score);
+            }
         }
     }
 

@@ -15,6 +15,11 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene("Settings Screen");
     }
 
+    public void Highscores_Screen()
+    {
+        SceneManager.LoadScene("Highscores");
+    }
+
     public void Quit_App()
     {
         Application.Quit();
