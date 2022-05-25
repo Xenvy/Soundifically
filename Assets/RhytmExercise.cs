@@ -13,6 +13,8 @@ public class RhytmExercise : MonoBehaviour
     private AudioSource audio_source3;
     private AudioSource audio_source4;
     private Vector3 initial_position;
+    private Vector3 end_position;
+    private float step;
     public int[] random_kick;
     public int[] random_snare;
     public int[] random_ohat;
@@ -38,6 +40,7 @@ public class RhytmExercise : MonoBehaviour
     GameObject check_button;
     GameObject next_button;
     GameObject time_cursor;
+    GameObject dummy_cursor;
 
     void Awake()
     {
@@ -45,6 +48,7 @@ public class RhytmExercise : MonoBehaviour
         check_button = GameObject.Find("CheckButton");
         next_button = GameObject.Find("NextButton");
         time_cursor = GameObject.Find("TimeCursor");
+        dummy_cursor = GameObject.Find("DummyCursor");
 
         audio_source4 = FindObjectOfType<AudioSource>();
         audio_source = FindObjectsOfType<AudioSource>()[1];
@@ -101,6 +105,8 @@ public class RhytmExercise : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
         initial_position = time_cursor.transform.position;
+        end_position = dummy_cursor.transform.position;
+        step = (end_position.x - initial_position.x) / 160;
     }
 
     IEnumerator PlaySamples()
@@ -130,7 +136,7 @@ public class RhytmExercise : MonoBehaviour
 
             if(i > bpm.value*bpm.value/2500)
             {
-                time_cursor.transform.position += Vector3.right * 6.9f;
+                time_cursor.transform.position += Vector3.right * step;
             }
             else if(i > bpm.value * bpm.value / 3600)
             {
@@ -138,7 +144,7 @@ public class RhytmExercise : MonoBehaviour
             }
             else if(play_started)
             {
-                time_cursor.transform.position += Vector3.right * 6.9f;
+                time_cursor.transform.position += Vector3.right * step;
             }
 
             yield return new WaitForSeconds(1.5f/bpm.value);

@@ -24,6 +24,6 @@ public class Highscores : MonoBehaviour
     }
     public void Back_To_Menu()
     {
-        SceneManager.LoadScene("Exercise Selection");
+        SceneManager.LoadScene("Main Menu");
     }
 }
