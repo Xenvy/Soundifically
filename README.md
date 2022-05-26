@@ -16,7 +16,7 @@ An extensive selection of varied exercises is in the works, with the goal of all
 
 
 ### Current state
-Soundifically is currently in the beta stage - with enough features and content to allow for several different (and hopefully fruitful) training sessions, though definitely lacking polish, customizability and scope of a full release. You can grab the latest release [here](https://github.com/Xenvy/Soundifically/releases/tag/v0.4.0-beta).
+Soundifically is currently in the beta stage - with enough features and content to allow for several different (and hopefully fruitful) training sessions, though definitely lacking polish, customizability and scope of a full release. You can grab the latest release [here](https://github.com/Xenvy/Soundifically/releases).
 
 
 
@@ -36,4 +36,4 @@ Open your file explorer of choice and find the downloaded .apk file. Try to open
 Soundfically allows you to train using your favorite music and sounds (at least for the most part). To use this feature you need your tracks to be in either .mp3 or .wav format.
 If you are on Windows, navigate to *C:/Users/[your_username]/Appdata/LocalLow/X3n-V Studio/Soundifically* and create 3 folders named "Compression Exercise", "EQ Exercise" and "Level Difference Exercise" if they aren't there already. You can then place your files in an appropriate folder, depending on which exercise you want them to appear in (files in EQ exercise are shared with Cutoff frequency exercise). If you can't see the Appdata folder, try typing "%appdata%" in Windows search bar.
 
-On Android the folders should go into  */storage/emulated/0/Android/data/com.X3nVStudio.Soundifically/files/* .
+On Android the folders should go into  */storage/emulated/0/Android/data/com.X3nVStudio.Soundifically/files/* . You'll also need to grant file storage permissions to the app.
