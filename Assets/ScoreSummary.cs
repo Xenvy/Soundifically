@@ -22,6 +22,7 @@ public class ScoreSummary : MonoBehaviour
     public TextMeshProUGUI total_score;
 
     private Dictionary<string, object> user_score = new Dictionary<string, object>();
+    private string score_details;
 
     private void Awake()
     {
@@ -30,9 +31,13 @@ public class ScoreSummary : MonoBehaviour
             PlayerPrefs.SetInt("Player ID", Random.Range(0, 1000000));
         }
 
-        user_score.Add("Player ID", PlayerPrefs.GetInt("Player ID"));
-        user_score.Add("Exercise ID", ScoreManager.Instance.exercise_id);
-        user_score.Add("Score", ScoreManager.Instance.score);       
+        PlayerPrefs.SetFloat("Usage time", ScoreManager.Instance.usage_time);
+
+    //    user_score.Add("Player ID", PlayerPrefs.GetInt("Player ID"));
+    //    user_score.Add("Exercise ID", ScoreManager.Instance.exercise_id);
+    //    user_score.Add("Score", ScoreManager.Instance.score);
+
+        score_details = PlayerPrefs.GetInt("Player ID").ToString() + ", t " + PlayerPrefs.GetFloat("Usage time").ToString("N0") + ", id " + ScoreManager.Instance.exercise_id.ToString() + ", s " + ScoreManager.Instance.score.ToString();
 
         total_score.text = "Total score: " + ScoreManager.Instance.score.ToString();
         switch (ScoreManager.Instance.exercise_id)
@@ -48,7 +53,6 @@ public class ScoreSummary : MonoBehaviour
                 good_value.text = " ";
                 close_value.text = " ";
                 difficulty_bonus.text = " ";
-                user_score.Add("Correct answers", 16 - ScoreManager.Instance.incorrect_count);
                 break;
 
             case 1:
@@ -62,10 +66,7 @@ public class ScoreSummary : MonoBehaviour
                 good_value.text = (ScoreManager.Instance.good_count * 100).ToString();
                 close_value.text = (ScoreManager.Instance.close_count * 50).ToString();
                 difficulty_bonus.text = " ";
-                user_score.Add("Perfect answers", ScoreManager.Instance.perfect_count);
-                user_score.Add("Excellent answers", ScoreManager.Instance.excellent_count);
-                user_score.Add("Good answers", ScoreManager.Instance.good_count);
-                user_score.Add("Close answers", ScoreManager.Instance.close_count);
+                score_details += ", p " + ScoreManager.Instance.perfect_count.ToString() + ", e " + ScoreManager.Instance.excellent_count.ToString() + ", g " + ScoreManager.Instance.good_count.ToString() + ", c " + ScoreManager.Instance.close_count.ToString();
                 break;
 
             case 2:
@@ -79,10 +80,7 @@ public class ScoreSummary : MonoBehaviour
                 good_value.text = (ScoreManager.Instance.good_count * 100).ToString();
                 close_value.text = (ScoreManager.Instance.close_count * 50).ToString();
                 difficulty_bonus.text = " ";
-                user_score.Add("Perfect answers", ScoreManager.Instance.perfect_count);
-                user_score.Add("Excellent answers", ScoreManager.Instance.excellent_count);
-                user_score.Add("Good answers", ScoreManager.Instance.good_count);
-                user_score.Add("Close answers", ScoreManager.Instance.close_count);
+                score_details += ", p " + ScoreManager.Instance.perfect_count.ToString() + ", e " + ScoreManager.Instance.excellent_count.ToString() + ", g " + ScoreManager.Instance.good_count.ToString() + ", c " + ScoreManager.Instance.close_count.ToString();
                 break;
 
             case 3:
@@ -96,10 +94,7 @@ public class ScoreSummary : MonoBehaviour
                 good_value.text = (ScoreManager.Instance.good_count * 100).ToString();
                 close_value.text = (ScoreManager.Instance.close_count * 50).ToString();
                 difficulty_bonus.text = " ";
-                user_score.Add("Perfect answers", ScoreManager.Instance.perfect_count);
-                user_score.Add("Excellent answers", ScoreManager.Instance.excellent_count);
-                user_score.Add("Good answers", ScoreManager.Instance.good_count);
-                user_score.Add("Close answers", ScoreManager.Instance.close_count);
+                score_details += ", p " + ScoreManager.Instance.perfect_count.ToString() + ", e " + ScoreManager.Instance.excellent_count.ToString() + ", g " + ScoreManager.Instance.good_count.ToString() + ", c " + ScoreManager.Instance.close_count.ToString();
                 break;
 
             case 4:
@@ -113,10 +108,7 @@ public class ScoreSummary : MonoBehaviour
                 good_value.text = ScoreManager.Instance.close_count.ToString();
                 close_value.text = " ";
                 difficulty_bonus.text = "+" + ScoreManager.Instance.difficulty.ToString() + @"%";
-                user_score.Add("Correct answers", ScoreManager.Instance.excellent_count);
-                user_score.Add("Wrong answers", ScoreManager.Instance.incorrect_count);
-                user_score.Add("Missed answers", ScoreManager.Instance.close_count);
-                user_score.Add("Difficulty bonus", ScoreManager.Instance.difficulty);
+                score_details += ", c " + ScoreManager.Instance.excellent_count.ToString() + ", w " + ScoreManager.Instance.incorrect_count.ToString() + ", m " + ScoreManager.Instance.close_count.ToString() + ", d " + ScoreManager.Instance.difficulty.ToString();
                 break;
 
             case 5:
@@ -130,11 +122,7 @@ public class ScoreSummary : MonoBehaviour
                 good_value.text = (ScoreManager.Instance.chord_mode * 100).ToString();
                 close_value.text = "+" + (ScoreManager.Instance.advanced_mode * 20).ToString();
                 difficulty_bonus.text = "+" + (ScoreManager.Instance.key_mode * 30).ToString();
-                user_score.Add("Notes", ScoreManager.Instance.note_mode);
-                user_score.Add("Intervals", ScoreManager.Instance.interval_mode);
-                user_score.Add("Chords", ScoreManager.Instance.chord_mode);
-                user_score.Add("Advanced chords", ScoreManager.Instance.advanced_mode);
-                user_score.Add("Chords with root", ScoreManager.Instance.key_mode);
+                score_details += ", n " + ScoreManager.Instance.note_mode.ToString() + ", i " + ScoreManager.Instance.interval_mode.ToString() + ", c " + ScoreManager.Instance.chord_mode.ToString() + ", a " + ScoreManager.Instance.advanced_mode.ToString() + ", k " + ScoreManager.Instance.key_mode.ToString();
                 break;
 
             default:
@@ -144,8 +132,8 @@ public class ScoreSummary : MonoBehaviour
 #if ENABLE_CLOUD_SERVICES_ANALYTICS
         if (PlayerPrefs.GetInt("TelemetryOn", 1) == 1)
         {
-            
-            AnalyticsResult ar = Analytics.CustomEvent("Exercise Completed", user_score);
+            user_score.Add("Score details", score_details);
+            AnalyticsResult ar = Analytics.CustomEvent("ExerciseCompleted", user_score);
             
         }
 #endif

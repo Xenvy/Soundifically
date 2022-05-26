@@ -63,25 +63,27 @@ public class CompressionExcercise : MonoBehaviour
             {
                 if (fi.Extension == ".mp3")
                 {
-                    using (UnityWebRequest custom_file = UnityWebRequestMultimedia.GetAudioClip(fi.FullName, AudioType.MPEG))
+                    //using (UnityWebRequest get_custom_file = UnityWebRequestMultimedia.GetAudioClip("file://" + fi.FullName, AudioType.MPEG))
+                    using (UnityWebRequest get_custom_file = UnityWebRequestMultimedia.GetAudioClip(fi.FullName, AudioType.MPEG))
                     {
-                        yield return custom_file.SendWebRequest();
+                        yield return get_custom_file.SendWebRequest();
 
-                        if (custom_file.result != UnityWebRequest.Result.ConnectionError)
+                        if (get_custom_file.result != UnityWebRequest.Result.ConnectionError)
                         {
-                            samples.Add(DownloadHandlerAudioClip.GetContent(custom_file));
+                            samples.Add(DownloadHandlerAudioClip.GetContent(get_custom_file));
                         }
                     }
                 }
                 else if (fi.Extension == ".wav")
                 {
-                    using (UnityWebRequest custom_file = UnityWebRequestMultimedia.GetAudioClip(fi.FullName, AudioType.WAV))
+                    //using (UnityWebRequest get_custom_file = UnityWebRequestMultimedia.GetAudioClip("file://" + fi.FullName, AudioType.WAV))
+                    using (UnityWebRequest get_custom_file = UnityWebRequestMultimedia.GetAudioClip(fi.FullName, AudioType.WAV))
                     {
-                        yield return custom_file.SendWebRequest();
+                        yield return get_custom_file.SendWebRequest();
 
-                        if (custom_file.result != UnityWebRequest.Result.ConnectionError)
+                        if (get_custom_file.result != UnityWebRequest.Result.ConnectionError)
                         {
-                            samples.Add(DownloadHandlerAudioClip.GetContent(custom_file));
+                            samples.Add(DownloadHandlerAudioClip.GetContent(get_custom_file));
                         }
                     }
                 }

@@ -125,6 +125,7 @@ public class CutoffFreqExercise : MonoBehaviour
             {
                 if (fi.Extension == ".mp3")
                 {
+                    //using (UnityWebRequest get_custom_file = UnityWebRequestMultimedia.GetAudioClip("file://" + fi.FullName, AudioType.MPEG))
                     using (UnityWebRequest get_custom_file = UnityWebRequestMultimedia.GetAudioClip(fi.FullName, AudioType.MPEG))
                     {
                         yield return get_custom_file.SendWebRequest();
@@ -137,6 +138,7 @@ public class CutoffFreqExercise : MonoBehaviour
                 }
                 else if (fi.Extension == ".wav")
                 {
+                    //using (UnityWebRequest get_custom_file = UnityWebRequestMultimedia.GetAudioClip("file://" + fi.FullName, AudioType.WAV))
                     using (UnityWebRequest get_custom_file = UnityWebRequestMultimedia.GetAudioClip(fi.FullName, AudioType.WAV))
                     {
                         yield return get_custom_file.SendWebRequest();
