@@ -206,6 +206,7 @@ public class LevelDiffExercise : MonoBehaviour
             if (PlayerPrefs.GetInt("Level Highscore", 0) < score)
             {
                 PlayerPrefs.SetInt("Level Highscore", score);
+                ScoreManager.Instance.highscore_beaten = true;
             }
         }
     }

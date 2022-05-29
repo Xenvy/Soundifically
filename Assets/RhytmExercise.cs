@@ -309,6 +309,7 @@ public class RhytmExercise : MonoBehaviour
             if(PlayerPrefs.GetInt("Rhytm Highscore", 0) < score)
             {
                 PlayerPrefs.SetInt("Rhytm Highscore", (int)score);
+                ScoreManager.Instance.highscore_beaten = true;
             }
         }
         

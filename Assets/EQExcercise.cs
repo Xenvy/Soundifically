@@ -291,6 +291,7 @@ public class EQExcercise : MonoBehaviour
             if (PlayerPrefs.GetInt("EQ Highscore", 0) < score)
             {
                 PlayerPrefs.SetInt("EQ Highscore", score);
+                ScoreManager.Instance.highscore_beaten = true;
             }
         }
     }

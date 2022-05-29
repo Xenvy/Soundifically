@@ -179,6 +179,7 @@ public class CompressionExcercise : MonoBehaviour
             if (PlayerPrefs.GetInt("Compression Highscore", 0) < score)
             {
                 PlayerPrefs.SetInt("Compression Highscore", score);
+                ScoreManager.Instance.highscore_beaten = true;
             }
         }
     }

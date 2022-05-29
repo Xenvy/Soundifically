@@ -842,6 +842,7 @@ public class TonalAnalysisExercise : MonoBehaviour
             if (PlayerPrefs.GetInt("Tonal Highscore", 0) < score)
             {
                 PlayerPrefs.SetInt("Tonal Highscore", score);
+                ScoreManager.Instance.highscore_beaten = true;
             }
         }
     }

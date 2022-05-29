@@ -19,6 +19,7 @@ public class ScoreManager : MonoBehaviour
     public int advanced_mode;
     public int key_mode;
     public int player_id;
+    public bool highscore_beaten;
     public float usage_time;
     void Awake()
     {

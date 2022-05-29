@@ -24,6 +24,8 @@ public class ScoreSummary : MonoBehaviour
     private Dictionary<string, object> user_score = new Dictionary<string, object>();
     private string score_details;
 
+    GameObject new_highscore;
+
     private void Awake()
     {
         if(!PlayerPrefs.HasKey("Player ID"))
@@ -32,6 +34,8 @@ public class ScoreSummary : MonoBehaviour
         }
 
         PlayerPrefs.SetFloat("Usage time", ScoreManager.Instance.usage_time);
+
+        new_highscore = GameObject.Find("NewHighscore");
 
     //    user_score.Add("Player ID", PlayerPrefs.GetInt("Player ID"));
     //    user_score.Add("Exercise ID", ScoreManager.Instance.exercise_id);
@@ -137,6 +141,10 @@ public class ScoreSummary : MonoBehaviour
             
         }
 #endif
+
+
+            new_highscore.SetActive(ScoreManager.Instance.highscore_beaten);
+            ScoreManager.Instance.highscore_beaten = false;
 
     }
 

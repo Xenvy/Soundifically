@@ -351,6 +351,7 @@ public class CutoffFreqExercise : MonoBehaviour
             if (PlayerPrefs.GetInt("Cutoff Highscore", 0) < score)
             {
                 PlayerPrefs.SetInt("Cutoff Highscore", score);
+                ScoreManager.Instance.highscore_beaten = true;
             }
         }
     }
