@@ -26,6 +26,7 @@ public class TonalAnalysisExercise : MonoBehaviour
     private AudioSource audio_source6;
     public TextMeshProUGUI score_value;
     public TextMeshProUGUI correct_answer;
+    public TextMeshProUGUI exercise_progress;
     public TMP_Dropdown mode_select;
     public TMP_Dropdown note_ans;
     public TMP_Dropdown interval_ans;
@@ -822,6 +823,7 @@ public class TonalAnalysisExercise : MonoBehaviour
                 chord_keys[i] = 0;
             }
             ModeSelect();
+            exercise_progress.text = (attempt + 1).ToString() + "/12";
             correct_text.SetActive(false);
             incorrect_text.SetActive(false);
             check_button.SetActive(true);

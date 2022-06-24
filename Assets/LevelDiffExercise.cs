@@ -19,6 +19,7 @@ public class LevelDiffExercise : MonoBehaviour
     public TextMeshProUGUI current_diff;
     public TextMeshProUGUI correct_diff;
     public TextMeshProUGUI score_value;
+    public TextMeshProUGUI exercise_progress;
     private int score;
     private double slider_value;
     private int attempt = 0;
@@ -188,6 +189,7 @@ public class LevelDiffExercise : MonoBehaviour
             text4.SetActive(false);
             text5.SetActive(false);
             text6.SetActive(false);
+            exercise_progress.text = (attempt + 1).ToString() + "/12";
             ChooseRandomSample();
             text7.SetActive(false);
             text8.SetActive(true);

@@ -20,6 +20,7 @@ public class EQExcercise : MonoBehaviour
     public TextMeshProUGUI current_frequency;
     public TextMeshProUGUI CorrectFrequency;
     public TextMeshProUGUI ScoreValue;
+    public TextMeshProUGUI exercise_progress;
     private int score;
     private double slider_value;
     private int attempt;
@@ -259,6 +260,7 @@ public class EQExcercise : MonoBehaviour
         {
             text.SetActive(false);
             text2.SetActive(false);
+            exercise_progress.text = (attempt + 1).ToString() + "/10";
             ChooseRandomSample();
             if (is_boosted == 1)
             {

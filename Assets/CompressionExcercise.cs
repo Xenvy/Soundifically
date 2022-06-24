@@ -14,6 +14,7 @@ public class CompressionExcercise : MonoBehaviour
     private AudioSource audio_source;
     private AudioSource audio_source2;
     public TextMeshProUGUI ScoreValue;
+    public TextMeshProUGUI exercise_progress;
     private int score;
     private int attempt = 0;
     DirectoryInfo cfd_info;
@@ -164,6 +165,7 @@ public class CompressionExcercise : MonoBehaviour
         {
             text.SetActive(false);
             text2.SetActive(false);
+            exercise_progress.text = (attempt+1).ToString() + "/16";
             ChooseRandomSample();
             text3.SetActive(false);
             sample_button.SetActive(true);

@@ -21,6 +21,7 @@ public class RhytmExercise : MonoBehaviour
     public int[] random_chat;
     private bool play_started;
     public TextMeshProUGUI score_value;
+    public TextMeshProUGUI exercise_progress;
     public Slider bpm;
     public Slider difficulty;
     private float score = 0;
@@ -297,6 +298,7 @@ public class RhytmExercise : MonoBehaviour
             }
             check_button.SetActive(true);
             next_button.SetActive(false);
+            exercise_progress.text = (attempt + 1).ToString() + "/8";
             RandomPattern();
         }
         else
